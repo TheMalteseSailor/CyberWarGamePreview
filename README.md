@@ -1,6 +1,6 @@
 # Cyber War: Choose your contract and become an unstoppable hacking force.
 
-$${\color{red}PRE-ALPHA \space BUILD}$$
+$${\color{red}EARLY \space DEV \space BUILD}$$
 
 ### Game Description
 Cyber War is a terminal based table-top-like RTS where you play as the teamlead for a Cyber Private Military Contractor (C-PMC). Remember, just because you're doing government business doesn't mean your sloppy mistakes wont get you killed if it pisses off the wrong people in power.
