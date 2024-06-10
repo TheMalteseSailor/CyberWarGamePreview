@@ -33,8 +33,8 @@ When you develop a capability, when making a selection from the decision table t
   - __Kernel__ - You are in the core of the system. Detection is very unlikly. Success roles are very likely and detection likelihood is low however, failures have a far worse outcome. 
 
 ### System Access
-- Exploit - This is the most basic access level of a system. You can use this instance to upload a follow-on stage to the system. You cannot scan or exploit past a system via this level of access. Utilize the 'implant'/'install' command to upload an immplant type capability to the system.
-- Implant - This level of access includes RATs, Beaconing implants, and triggerable implants. You can use this level of access to scan and exploit past that specific system. It can also be used to upload additional capes to the target.
+- __Exploit__ - This is the most basic access level of a system. You can use this instance to upload a follow-on stage to the system. You cannot scan or exploit past a system via this level of access. Utilize the 'implant'/'install' command to upload an immplant type capability to the system.
+- I__mplant__ - This level of access includes RATs, Beaconing implants, and triggerable implants. You can use this level of access to scan and exploit past that specific system. It can also be used to upload additional capes to the target.
 
 ### Commands
 - __scan__: scans for targets
@@ -72,6 +72,16 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - __5th__: Now that you have an exploit session on the system, you need to elevate your access to either a RAT or implant session. This can be done with the 'implant' or 'install' command. An example of this is "implant target 1 with [cape_sn]_]"
 - __6th__: now you have sufficient access to progress past this specific device. to scan past this device utilize the 'scan' command to scan any network segment that specific system is connected to. An example of this is "scan segment from target 1"
 - __7th__: Start the loop again at number 3.
+
+
+### Term Definitions
+- __cape_sn__ - capability serial number assigned at development time
+- __instance_id__ - a unique id assigned to a specific tool instance assocaited with a player/npc connection to a target. This is issued at tool deployment time or player/npc connection time.
+- __rdr__ - shorthand for redirecter or a pivot system outside of the target network
+- 
+
+
+
 
 ### Game Flow Examples
 <details>
