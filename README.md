@@ -1,6 +1,6 @@
 # Cyber War: Choose your contract and become an unstoppable hacking force.
 
-$${\color{red}EARLY \space DEV \space BUILD}$$
+$${\color{red}DEVELOPER \space BUILD}$$
 
 ### Game Description
 Cyber War is a terminal based table-top-like RTS where you play as the teamlead for a Cyber Private Military Contractor (C-PMC). Remember, just because you're doing government business doesn't mean your sloppy mistakes wont get you killed if it pisses off the wrong people in power.
@@ -9,32 +9,69 @@ Hack your way through various networks and accomplish missions for large sums of
 
 Develop novel exploits and backdoors to move around your target networks. But, be careful not to get sloppy. Not all network admins are made equal and some of them will eat your lunch if you get to cocky. 
 
+### Objectives
+Select your contract and mission. Hack the network, but ensure that you don't get cought by the administrator or burn your exploits and tools. 
 
+### Capability Types
+- __Exploits__
+  - __RCE__ - Remote Code Execution - Gain access to a system via exploit
+  - __LPE__ - Local Privilege Escilation - Elevate permissions to a higher level
+  - __Lateral__ - This is coverals various exploit types to include credential usage, internal proprietary software, etc.
+- __Tools__
+  - __RAT__ - Remote Access Tool - A non-persistant tool used to direct access to a system
+  - __Beaconinig implant__ - A persistant tool that once installed will allow for reconnecting to the target no matter where it is in the network. If you lose all of your redirectors all of your beaconing implants will automatically uninstall
+  - __Triggerable implant__ - A persistant tool that once installed will allow for reconnecting to the target as long as you have direct access to the system and the listening port on the targeted system is listening and accessable. 
+  - __Ransomware__ - [NOT IMPLEMENTED]
+  - __virus__ - [NOT IMPLEMENTED]
+  - __System monitsor__ - [NOT IMPLEMENTED]
+
+### Permission levels
+When you develop a capability, when making a selection from the decision table the permission level of the tool and access level provided by an exploit is chosen. If you're in a network that uses an EDR heavily and/or thr Administrator is sharp you'll want to pay the additional costs for the more privilaged capabilitie.
+  - __User__ - Basic access, very likely to get cought by an EDR and/or Admin.  
+  - __Limited service__ - Essentially, the same access level as User, but more blended and has a slightly lower chance of getting cought by EDR and/or Admin. It may also potentially get past a host based firewall.
+  - __System__ - This is the the NT\SYSTEM on Windows, root on Linux, etc.. This access level comes with EDR, firewall, and Admin bypass potential and improved roll potential. 
+  - __Kernel__ - You are in the core of the system. Detection is very unlikly. Success roles are very likely and detection likelihood is low however, failures have a far worse outcome. 
+
+### System Access
+- Exploit - This is the most basic access level of a system. You can use this instance to upload a follow-on stage to the system. You cannot scan or exploit past a system via this level of access. Utilize the 'implant'/'install' command to upload an immplant type capability to the system.
+- Implant - This level of access includes RATs, Beaconing implants, and triggerable implants. You can use this level of access to scan and exploit past that specific system. It can also be used to upload additional capes to the target.
 
 ### Commands
-- scan: scans for targets
+- __scan__: scans for targets
 	- ex. scan target
 	- ex. scan segment from target X
-- exploit|pop
+- __exploit|pop__
 	- ex. pop target 1 with <cape_sn> from rdr
 	- ex. pop target 2 with <cape_sn> from target 1
-- implant|install
+- __implant|install__
 	- ex. implant target 1 with <cape_sn>
-- develop|dev
+- __develop|dev__
 	- ex. dev windows rce 443 tcp
 	- ex. dev windows rat
 	- ex. dev linux beaconing
 	- ex. dev router triggerable 12345 udp
-- get
+- __get__
 	- ex. get rdr
-- show
+- __show__
 	- ex. show targets
 	- ex. show team
-- connect
+- __connect__
     - ex. connect to target 1 with <cape_sn>
-- disconnect
+- __disconnect__
     - ex. disconnect <instance_id> from target 1
 
+    
+### Game Mechanics
+__NOTE__: Whenever a decision table is presented, you are rolling a series of dice to determine your success or failure.
+- __1st__: You need to ascertain if your team has any redirectors by using the 'show team' command to display your team information.
+- __2nd__: You then need to scan the target network by using the 'scan target' command. If successful you will be presented with the devices that are exposed to the internet (aka edge nodes).
+- __3rd__: You will either utilize an exploit in your inventory or develop an appropriate one based on the desired target's platform type, targeted service port, and protocol. s
+- __4th a__: If you don't have an appropriate RAT or other implant avilable you can develop that now for future deployment for elevated starget access.
+- __4th b__: Utilizing an appropriate exploit, use the 'exploit' command to exploit the desired target. An example of this command is "exploit target 1 with [cape_sn_] from redirector"\
+__NOTE__: Once you gain initial access to a target system, you will obtain additional system data presented in the 'show targets' command. This is essentially is considered system survey data.
+- __5th__: Now that you have an exploit session on the system, you need to elevate your access to either a RAT or implant session. This can be done with the 'implant' or 'install' command. An example of this is "implant target 1 with [cape_sn]_]"
+- __6th__: now you have sufficient access to progress past this specific device. to scan past this device utilize the 'scan' command to scan any network segment that specific system is connected to. An example of this is "scan segment from target 1"
+- __7th__: Start the loop again at number 3.
 
 ### Game Flow Examples
 <details>
