@@ -34,7 +34,7 @@ When you develop a capability, when making a selection from the decision table t
 
 ### System Access
 - __Exploit__ - This is the most basic access level of a system. You can use this instance to upload a follow-on stage to the system. You cannot scan or exploit past a system via this level of access. Utilize the 'implant'/'install' command to upload an immplant type capability to the system.
-- I__mplant__ - This level of access includes RATs, Beaconing implants, and triggerable implants. You can use this level of access to scan and exploit past that specific system. It can also be used to upload additional capes to the target.
+- __Implant__ - This level of access includes RATs, Beaconing implants, and triggerable implants. You can use this level of access to scan and exploit past that specific system. It can also be used to upload additional capes to the target.
 
 ### Commands
 - __scan__: scans for targets
