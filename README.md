@@ -67,9 +67,9 @@ __NOTE__: Whenever a decision table is presented, you are rolling a series of di
 - __2nd__: You then need to scan the target network by using the 'scan target' command. If successful you will be presented with the devices that are exposed to the internet (aka edge nodes).
 - __3rd__: You will either utilize an exploit in your inventory or develop an appropriate one based on the desired target's platform type, targeted service port, and protocol. s
 - __4th a__: If you don't have an appropriate RAT or other implant avilable you can develop that now for future deployment for elevated starget access.
-- __4th b__: Utilizing an appropriate exploit, use the 'exploit' command to exploit the desired target. An example of this command is "exploit target 1 with [cape_sn_] from redirector"\
+- __4th b__: Utilizing an appropriate exploit, use the 'exploit' command to exploit the desired target. An example of this command is "exploit target 1 with [cape_sn] from redirector"\
 __NOTE__: Once you gain initial access to a target system, you will obtain additional system data presented in the 'show targets' command. This is essentially is considered system survey data.
-- __5th__: Now that you have an exploit session on the system, you need to elevate your access to either a RAT or implant session. This can be done with the 'implant' or 'install' command. An example of this is "implant target 1 with [cape_sn]_]"
+- __5th__: Now that you have an exploit session on the system, you need to elevate your access to either a RAT or implant session. This can be done with the 'implant' or 'install' command. An example of this is "implant target 1 with [cape_sn]"
 - __6th__: now you have sufficient access to progress past this specific device. to scan past this device utilize the 'scan' command to scan any network segment that specific system is connected to. An example of this is "scan segment from target 1"
 - __7th__: Start the loop again at number 3.
 
@@ -81,7 +81,7 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - 
 
 
-### Charecter Trait Defenitions
+### Character Traits Definition
 - __P__ - programming - The proficiency of programminng in C, C++, and other compiled\semi-compiled languages
 - __S__ - scripting - The proficiency of that hacker to write efficient and effective scripts for automating tasks
 - __NE__ - network exploitation - The proficiency of a specific hacker to hack through a network utilizing various tools. This value is the posession of the knowlage to perform that action.
