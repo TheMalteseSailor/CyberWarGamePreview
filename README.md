@@ -81,7 +81,12 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - 
 
 
-
+### Charecter Trait Defenitions
+- __P__ - programming - The proficiency of programminng in C, C++, and other compiled\semi-compiled languages
+- __S__ - scripting - The proficiency of that hacker to write efficient and effective scripts for automating tasks
+- __NE__ - network exploitation - The proficiency of a specific hacker to hack through a network utilizing various tools. This value is the posession of the knowlage to perform that action.
+- __ED__ - Exploit Developement - This is proficiency to find bugs and convert them to exploits.
+- __Not shown__ - personality bonus - [Not Implemented] - can be used as a wild card value to help obtain a successful dice role associated with a decision table. 
 
 ### Game Flow Examples
 <details>
