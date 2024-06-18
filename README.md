@@ -5,6 +5,11 @@ $${\color{red}DEVELOPER \space BUILD}$$
 ### License
 GNU GPL. You can use for free, but please don't steal or make money from without contacting me first.
 
+### Notes to players
+- This game preview is not fully functional.
+- The current build lacks the contracting mechanics as well as monetary values associated with actions and tools.
+- The Administrator (antagonist) has not been implemented in this build, but will be in upcoming previews. 
+
 ### Game Description
 Cyber War is a terminal based table-top-like RTS where you play as the teamlead for a Cyber Private Military Contractor (C-PMC). Remember, just because you're doing government business doesn't mean your sloppy mistakes wont get you killed if it pisses off the wrong people in power.
 
@@ -92,7 +97,7 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - __Not shown__ - personality bonus - [Not Implemented] - can be used as a wild card value to help obtain a successful dice role associated with a decision table. 
 
 ### Starting The game
-The game was developed with python 3.10.\
+The game was developed with python 3.10.
 ```
 cd CyberWarGamePreview
 python CyberWarGame.py
