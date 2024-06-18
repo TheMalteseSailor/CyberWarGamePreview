@@ -2,6 +2,9 @@
 
 $${\color{red}DEVELOPER \space BUILD}$$
 
+### License
+GNU GPL. You can use for free, but please don't steal or make money from without contacting me first.
+
 ### Game Description
 Cyber War is a terminal based table-top-like RTS where you play as the teamlead for a Cyber Private Military Contractor (C-PMC). Remember, just because you're doing government business doesn't mean your sloppy mistakes wont get you killed if it pisses off the wrong people in power.
 
@@ -87,6 +90,11 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - __NE__ - network exploitation - The proficiency of a specific hacker to hack through a network utilizing various tools. This value is the posession of the knowlage to perform that action.
 - __ED__ - Exploit Developement - This is proficiency to find bugs and convert them to exploits.
 - __Not shown__ - personality bonus - [Not Implemented] - can be used as a wild card value to help obtain a successful dice role associated with a decision table. 
+
+### Starting The game
+The game was developed with python 3.10.\
+``` python CyberWarGame.py ```
+ 
 
 ### Game Flow Examples
 <details>
