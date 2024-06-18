@@ -1519,6 +1519,6 @@ def _access_GetSourceCapeDetails(capes_on_source: list, exploit_details: dict, d
 
 
 if __name__ == "__main__":
-    #introBanner()
-    #input("[ ] Press the 'Enter' to play.")
+    introBanner()
+    input("[ ] Press the 'Enter' to play.")
     MainGameLoop()
