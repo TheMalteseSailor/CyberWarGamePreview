@@ -31,7 +31,7 @@ Select your contract and mission. Hack the network, but ensure that you don't ge
   - __Triggerable implant__ - A persistant tool that once installed will allow for reconnecting to the target as long as you have direct access to the system and the listening port on the targeted system is listening and accessable. 
   - __Ransomware__ - [NOT IMPLEMENTED]
   - __virus__ - [NOT IMPLEMENTED]
-  - __System monitsor__ - [NOT IMPLEMENTED]
+  - __System monitor__ - [NOT IMPLEMENTED]
 
 ### Permission levels
 When you develop a capability, when making a selection from the decision table the permission level of the tool and access level provided by an exploit is chosen. If you're in a network that uses an EDR heavily and/or thr Administrator is sharp you'll want to pay the additional costs for the more privilaged capabilitie.
