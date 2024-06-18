@@ -93,7 +93,10 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 
 ### Starting The game
 The game was developed with python 3.10.\
-``` python CyberWarGame.py ```
+```
+cd CyberWarGamePreview
+python CyberWarGame.py
+```
  
 
 ### Game Flow Examples
