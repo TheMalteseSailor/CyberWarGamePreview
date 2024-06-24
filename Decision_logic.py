@@ -4,6 +4,20 @@ from PlayerUtils import backgroundTaskWorker
 import threading
 
 
+# The logic to handle the task decisions will need to take the HackerTeam object and the TargetNetwork object so that
+# modifications can be made between the two that a
+
+#decision_type = Decision_logic.scan_system
+'''
+decision_struct = {
+    "decision_type": "",
+    "context":"",
+    "targetNetwork":"",
+    "HackingTeam":"",
+    "TargetSystem":"",
+    }
+'''
+
 def baseDecisionHandler(decision_struct) -> None:
     # The HackingTeam Object is used to ascertain if certain tool reqirments are met.
 
@@ -110,6 +124,7 @@ def baseDecisionHandler(decision_struct) -> None:
 
         ##############
         # Threading to manange the enucumbered timer and follow on results. 
+        # I may need to build a mailbox/messagebox for the player to retrieve out of band messages from the NPCs
 
         final_decision_struct = { "title" : decision_struct["decision_type"]['title']} | decision_type[f"option {decision}"]
 
@@ -326,7 +341,7 @@ def get_develop_capability(decision_struct, capability_details, skill_requiremen
     develop_capability = {
         "title" : f"Develop {capability_details['cape_type']} {capability_details['cape_category']} for {capability_details['platform']}.",
         "option 1" : {
-        "definition" : "Lower skilled effort with longer time requirements",
+        "definition" : "Lower skilled effort with longer time requirements | (User mode)",
         "required skill values" : {
             "exploit development": skill_requirements["option 1"]["required skill values"]["exploit development"],
             "network exploitation" : skill_requirements["option 1"]["required skill values"]["network exploitation"],
@@ -352,7 +367,7 @@ def get_develop_capability(decision_struct, capability_details, skill_requiremen
         "outcome_reference": [(decision_struct["context"].developCapability, [capability_details,skill_requirements["option 1"]["outcome_args"]])]
         },
         "option 2" : {
-        "definition" : "Intermediate skilled effort with shorter, but still longer time requirements",
+        "definition" : "Intermediate skilled effort with shorter, but still longer time requirements | (Limited Service)",
         "required skill values" : {
             "exploit development": skill_requirements["option 2"]["required skill values"]["exploit development"],
             "network exploitation" : skill_requirements["option 2"]["required skill values"]["network exploitation"],
@@ -377,7 +392,7 @@ def get_develop_capability(decision_struct, capability_details, skill_requiremen
         #"outcome_args": [capability_details],
         "outcome_reference": [(decision_struct["context"].developCapability, [capability_details,skill_requirements["option 2"]["outcome_args"]])]        },
         "option 3" : {
-        "definition" : "Advanced skilled effort with acceptable time requirements.",
+        "definition" : "Advanced skilled effort with acceptable time requirements. | (System)",
         "required skill values" : {
             "exploit development": skill_requirements["option 3"]["required skill values"]["exploit development"],
             "network exploitation" : skill_requirements["option 3"]["required skill values"]["network exploitation"],
@@ -403,7 +418,7 @@ def get_develop_capability(decision_struct, capability_details, skill_requiremen
         "outcome_reference": [(decision_struct["context"].developCapability, [capability_details,skill_requirements["option 3"]["outcome_args"]])]
         },
         "option 4" : {
-        "definition" : "Expert skilled effort with short time requirements.",
+        "definition" : "Expert skilled effort with short time requirements. | (Kernel)",
         "required skill values" : {
             "exploit development": skill_requirements["option 4"]["required skill values"]["exploit development"],
             "network exploitation" : skill_requirements["option 4"]["required skill values"]["network exploitation"],

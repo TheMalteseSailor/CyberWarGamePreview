@@ -274,7 +274,7 @@ class PlayerGenerator():
 
     def incrementBurnoutCounter(self) -> None:
         self.burnout_counter += 1
-        if self.burnout_counter > 99:
+        if self.burnout_counter > 15:
             # once this is triggered you cannot use this player anymore. 
             # It may be prudent to zero out the NPC's stats 
             self.burnedout = True
@@ -673,7 +673,7 @@ class hackingTeam():
         ''' This is passed to the det_devlop_capability() to populate the decision values.'''
         permission_levels = ["user","limited service","system","kerenel"]
         if sub_type == "lpe":
-            permission_levels = ["system","kerenl","vm break-in", "vm break-out"]
+            permission_levels = ["system","kernel","vm break-in", "vm break-out"]
 
         skill_requirements = {
             "option 1": {

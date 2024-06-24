@@ -2,6 +2,8 @@ from math import e, trunc
 from random import randrange, shuffle
 from copy import deepcopy
 
+
+
 # Network links are mapped out in layers. targets in the same layer can talk to each other
 # edge nodes are layer 1. Routers can traverse multiple layers.
 
@@ -17,6 +19,18 @@ most_common_server_reg_ports_win = [(80,"TCP"),(443,"TCP"),(8080,"TCP"),(53,"UDP
                                     (110,"TCP"),(143,"TCP")]
 most_common_reg_ports_rtr_fw = [(80,"TCP"),(443,"TCP"),(22,"TCP"),(1080,"UDP")]
 most_common_reg_ports_emb = [(22,"TCP"),(23,"TCP")]
+
+# TODO: 
+#   1. I need to change the structure of the target object's properties into a dictionary
+#       a. This may even be a method that returns the target details in dictionary format.
+# I may not need the dict of properties because they already exist as object properties.
+#
+#   2. Q: How do you denote that you have access to a system enough to progress past it?
+#       A: To progress past a target, (ie. scan/exploit past) you must have a RAT or implant on the target.
+#       Q: How will you denote that an exploit session is associated with an implant/install session
+#           ie. you exploit and implant the same system in a sequince. 
+#       A: When the actions are taken on the target the "capre_deployed_to_target"'s timestamp value is checked.
+#           If the latest exploit time is within 'X' number of minutes it will not require the reexploit of the target.
 
 
 target = {
@@ -39,7 +53,7 @@ class targetSystem():
         #self.openPorts = self._generateOpenPorts()
         self._generateOpenPorts()
 
-        # not implemented beyond this point
+        self.admin_present = False
         self.FirewallEnabled = False
         self.WAF = False
         #self.layer = 0
@@ -432,12 +446,12 @@ class TargetNetwork():
     # values for administrator skill need to be determined and set.
     def _constructAdministrator(self,admin_difficulty) -> None:
         # needs another thread to populate alert queue when alerts trigger in the network.
-        alert_queue = []
-        network_administration = 0
-        malware_analysis = 0 
-        scripting = 0
-        work_load = 0
 
+        #network_administration = 0
+        #malware_analysis = 0 
+        #scripting = 0
+        #work_load = 0
+        '''
         if admin_difficulty == "easy":
             network_administration = 0
             malware_analysis = 0 
@@ -466,6 +480,14 @@ class TargetNetwork():
             "work_load": work_load,
             "aggressiveness": 0,
             }
+        '''
+
+        alert_queue = []
+        # call the initilization of the admin team
+        
+        # initlize the queue polling thread.
+        # need to create alert reaction method that is called from within polling thread.
+
 
         return
 
@@ -795,8 +817,11 @@ class TargetNetwork():
                 if target[0].visible and target[0].ports_visible:
                     print("[DEBUG] Target is visible and ports are visible.")
                     for open_port in target[0].openPorts:
-                        if str(open_port[0]) == str(exploit_details['port'][0]):
-                            print("[DEBUG] targeted port is open.")
+                        try:
+                            if str(open_port[0]) == str(exploit_details['port'][0]):
+                                print("[DEBUG] targeted port is open.")
+                                return True
+                        except: # if port = None for LPE 
                             return True
         print("[DEBUG] Some other error occured in _exploit_checkIfValid.")
         return False
@@ -846,7 +871,7 @@ enable_edr: {failure_result_details['enable_edr']}
             ''')
 
         elif failure_result_details['cape']["subtype"] == 'lpe':
-            return (f'''[Narrator] sub_type:{failure_result_details['cape_subtype']} 
+            return (f'''[Narrator] sub_type:{failure_result_details['cape']['subtype']} 
 was_burned: {failure_result_details['was_burned']}
 now_burned: {failure_result_details['now_burned']}
 lose_pivot_system: {failure_result_details['lose_pivot_system']}

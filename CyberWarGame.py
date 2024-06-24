@@ -1,4 +1,4 @@
-from CyberWarArt import *
+from CyberWarArt import IntroArtOptions
 from sys import exc_info, excepthook, stdout
 from time import sleep
 from random import randrange
@@ -10,8 +10,10 @@ import Decision_logic
 
 
 def introBanner():
-    IntroArtOptions = [introOption1,introOption2,introOption3,introOption4,introOption5,introOption6,introOption7]
-    intro_selection = randrange(0,7)
+    #IntroArtOptions = [introOption1,introOption2,introOption3,introOption4,introOption5,introOption6,introOption7]
+    
+    
+    intro_selection = randrange(0,len(IntroArtOptions))
     print(IntroArtOptions[intro_selection])
 
     print(r'''
@@ -43,7 +45,14 @@ def playerSelection():
             name_poses.append(PlayerUtils.handle_list[pot_name])
 
     NPCs = []
-
+    '''
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[0]))
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[1]))
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[2]))
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[3]))
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[4]))
+    NPCs.append(PlayerUtils.NpcGenerator(name=name_poses[5]))
+    '''
     NPCs.append(PlayerUtils.PlayerGenerator(name=name_poses[0]))
     NPCs.append(PlayerUtils.PlayerGenerator(name=name_poses[1]))
     NPCs.append(PlayerUtils.PlayerGenerator(name=name_poses[2]))
@@ -52,6 +61,23 @@ def playerSelection():
     NPCs.append(PlayerUtils.PlayerGenerator(name=name_poses[5]))
 
     print("[-] Choose 3 hackers to be on your team.")
+    #try:
+    #    for index, __ in enumerate(NPCs):
+    #        if (index == (len(NPCs)/2)):
+    #            break
+    #        print(rf'''     NPC{index+1:<25}:               NPC{index+4}:
+    #        | Name: {NPCs[index].name:<25} |             | Name:{NPCs[index+3].name:<25}  |
+    #        | Skill Levels:                   |             | Skill Levels:                   |
+    #        |       Programming: {NPCs[index].programming:<13}|             |       Programming: {NPCs[index+3].programming:<13}|
+    #        |       Scripting: {NPCs[index].scripting:<15}|             |       Scripting: {NPCs[index+3].scripting:<15}|
+    #        |       Network Exploitation: {NPCs[index].network_exploitation:<4}|             |       Network Exploitation: {NPCs[index+3].network_exploitation:<4}|
+    #        |       Exploit Development: {NPCs[index].exploit_development:<5}|             |       Exploit Development: {NPCs[index+3].exploit_development:<5}|
+    #        |       Personality Bonus: {NPCs[index].personality_bonus:<7}|             |       Personality Bonus: {NPCs[index+3].personality_bonus:<7}|
+    #        ''')           
+    #except Exception as ex:
+    #    print(ex)
+    #    pass
+   
     print("==============================================")
     print("=============== TEAM SELECTION ===============")
     for index, npc in enumerate(NPCs):        
@@ -1286,7 +1312,8 @@ def MainGameLoop():
                         #print(f"\t    \___ Personality Bonus: {member.personality_bonus}")
                         print(f"\t    \___ Targets:")
                         for target in member.connected_targets:
-                            print(f"\t      \___ src: {target['src']}, target: {target['targeted_system']}, meth: {target['access_method']}({target['cape_sn']}), instance_id: {target['instance_id']}, src_instance_id: {target['src_instance_id']}")
+                            cape_permission_level = HackingTeam._cape_GetCapePermissions(target['cape_sn'])
+                            print(f"\t      \___ src: {target['src']}, target: {target['targeted_system']}, meth: {target['access_method']}({target['cape_sn']})({cape_permission_level}), instance_id: {target['instance_id']}, src_instance_id: {target['src_instance_id']}")
                         print(f"\t    \___ Capabilities:")
                         if len(member.tools) > 0:
                             print("\t         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS")
@@ -1519,6 +1546,6 @@ def _access_GetSourceCapeDetails(capes_on_source: list, exploit_details: dict, d
 
 
 if __name__ == "__main__":
-    introBanner()
-    input("[ ] Press the 'Enter' to play.")
+    #introBanner()
+    #input("[ ] Press the 'Enter' to play.")
     MainGameLoop()
