@@ -18,13 +18,39 @@ Hack your way through various networks and accomplish missions for large sums of
 Develop novel exploits and backdoors to move around your target networks. But, be careful not to get sloppy. Not all network admins are made equal and some of them will eat your lunch if you get to cocky. 
 
 ### Objectives
-Select your contract and mission. Hack the network, but ensure that you don't get cought by the administrator or burn your exploits and tools. 
+1. Select your contract and mission. Hack the network, but ensure that you don't get cought by the administrator or burn your exploits and tools. 
+
+2. This game was designed for folks who are either new to the field or who largely need to understand the mindset of how hackers compromise, move, etc. in a target network.
+
+
+### Platform / Operating System (OS) Types
+- __Windows__ - 
+- __Linux__ - 
+- __Firewall__ - 
+- __Router__ - 
+- __Embedded__ - 
+
+ __Note__: The platform types are chosen at random when the game is constructing the target network(s).
+ 
+ __Note__: Each platform / OS type has a range of ports that are associated with that platform. 
+
+ __Note__: There are no architectures tracked or defined. 
+
+### Permission levels
+When you develop a capability, when making a selection from the decision table the permission level of the tool and access level provided by an exploit is chosen. If you're in a network that uses an EDR heavily and/or thr Administrator is sharp you'll want to pay the additional costs for the more privilaged capabilitie.  
+  - __User__ - Basic access, very likely to get cought by an EDR and/or Admin.  
+  - __Limited service__ - Essentially, the same access level as User, but more blended and has a slightly lower chance of getting cought by EDR and/or Admin. It may also potentially get past a host based firewall.
+  - __System__ - This is the the NT\SYSTEM on Windows, root on Linux, etc.. This access level comes with EDR, firewall, and Admin bypass potential and improved roll potential. 
+  - __Kernel__ - You are in the core of the system. Detection is very unlikly. Success roles are very likely and detection likelihood is low however, failures have a far worse outcome. 
+##### Exploit Only
+  - __VM_Break_In__ - [NOT IMPLEMENTED]
+  - __VM_Break_Out__ - [NOT IMPLEMENTED]
 
 ### Capability Types
 - __Exploits__
   - __RCE__ - Remote Code Execution - Gain access to a system via exploit
   - __LPE__ - Local Privilege Escilation - Elevate permissions to a higher level
-  - __Lateral__ - This is coverals various exploit types to include credential usage, internal proprietary software, etc.
+  - __Lateral__ - [NOT IMPLEMENTED] This is coverals various exploit types to include credential usage, internal proprietary software, etc.
 - __Tools__
   - __RAT__ - Remote Access Tool - A non-persistant tool used to direct access to a system
   - __Beaconinig implant__ - A persistant tool that once installed will allow for reconnecting to the target no matter where it is in the network. If you lose all of your redirectors all of your beaconing implants will automatically uninstall
@@ -32,13 +58,6 @@ Select your contract and mission. Hack the network, but ensure that you don't ge
   - __Ransomware__ - [NOT IMPLEMENTED]
   - __virus__ - [NOT IMPLEMENTED]
   - __System monitsor__ - [NOT IMPLEMENTED]
-
-### Permission levels
-When you develop a capability, when making a selection from the decision table the permission level of the tool and access level provided by an exploit is chosen. If you're in a network that uses an EDR heavily and/or thr Administrator is sharp you'll want to pay the additional costs for the more privilaged capabilitie.
-  - __User__ - Basic access, very likely to get cought by an EDR and/or Admin.  
-  - __Limited service__ - Essentially, the same access level as User, but more blended and has a slightly lower chance of getting cought by EDR and/or Admin. It may also potentially get past a host based firewall.
-  - __System__ - This is the the NT\SYSTEM on Windows, root on Linux, etc.. This access level comes with EDR, firewall, and Admin bypass potential and improved roll potential. 
-  - __Kernel__ - You are in the core of the system. Detection is very unlikly. Success roles are very likely and detection likelihood is low however, failures have a far worse outcome. 
 
 ### System Access
 - __Exploit__ - This is the most basic access level of a system. You can use this instance to upload a follow-on stage to the system. You cannot scan or exploit past a system via this level of access. Utilize the 'implant'/'install' command to upload an immplant type capability to the system.
@@ -54,7 +73,7 @@ When you develop a capability, when making a selection from the decision table t
     - lpe ex. pop target 1 with <cape_sn>
       - Tools do not inherit the the exploits elevated permissions. 
       - You must develop a tool that can function at that permission level.
-- __implant|install__
+- __implant|install|upload__
 	- ex. implant target 1 with <cape_sn>
 - __develop|dev__
 	- ex. dev windows rce 443 tcp
@@ -72,6 +91,8 @@ When you develop a capability, when making a selection from the decision table t
     - ex. disconnect <instance_id> from target #
 - __remove__
   - ex. remove <cape_sn> from target #
+- __attack__
+  - [NOT IMPLEMENTED]
     
 ### Game Mechanics
 __NOTE__: Whenever a decision table is presented, you are rolling a series of dice to determine your success or failure.
@@ -100,121 +121,21 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 - __ED__ - Exploit Developement - This is proficiency to find bugs and convert them to exploits.
 - __Not shown__ - personality bonus - [Not Implemented] - can be used as a wild card value to help obtain a successful dice role associated with a decision table. 
 
+
+### Execute The Game
+```
+> cd CyberWarGamePreview
+> python CyberWarGame.py
+```
+
+
 ### Game Flow Examples
 <details>
 <summary> Basic target network scan and target listing. </summary>
 
 ```
-[TheMalteseSailor] > show team
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        \\\\\\\ TEAM DETAILS \\\\\\\
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
--- Team Details:
-        \___ Redirector Count: 1
-        \___ Team Members:
-        -- Name: TheMalteseSailor
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 1, S: 3, NE: 1, ED: 2, PER: 1
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Tools: {'type': 'tool', 'name': '553217', 'sub_type': 'system_monitor', 'port': None, 'platform_type': 'firewall', 'burned': False, 'permissions': 'system'}
-                 \___ Exploits: {'type': 'exploit', 'name': '135016', 'sub_type': 'lpe', 'port': None, 'platform_type': 'linux', 'burned': False, 'permissions': 'kernel'}
-        -- Name: test1
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 3, S: 4, NE: 1, ED: 1, PER: 4
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Tools: {'type': 'tool', 'name': '568861', 'sub_type': 'system_monitor', 'port': None, 'platform_type': 'windows', 'burned': True, 'permissions': 'kernel'}
-        -- Name: test5
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 4, S: 4, NE: 2, ED: 4, PER: 1
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Exploits: {'type': 'exploit', 'name': '244752', 'sub_type': 'lateral', 'port': None, 'platform_type': 'firewall', 'burned': False, 'permissions': 'limited service'}
-        -- Name: test2
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 4, S: 1, NE: 4, ED: 3, PER: 3
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Exploits: {'type': 'exploit', 'name': '357310', 'sub_type': 'rce', 'port': (443, 'TCP'), 'platform_type': 'linux', 'burned': False, 'permissions': 'limited service'}
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        ///////      END     ///////
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-[TheMalteseSailor] > scan target
-[DEBUG] cmd:
-
-[+] Option 1
- -- Definition:
-     \__ Use aggressive nmap scan against all ports of the target's externally facing systems.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 5+ of D20
- -- Bonus Chance: (0, 0)
- -- Failure state: ('failure_state', False)
-
-[+] Option 2
- -- Definition:
-     \__ A slower, but still broad scan of the target's externally facing systems.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 2
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 3
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 11)
- -- Failure state: ('failure_state', False)
-[TheMalteseSailor] [cancel|#] choice? 1
-[DEBUG] decison: 1
-[Narrator] Dice roll Succeded.
-    \__ Needed: 5 on a D20
-    \__ Your Roll: 19
-
-[DEBUG] Calling background task worker thread from success status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
-[TheMalteseSailor] > show targets
----------------------------------------------------------------------
- Target: target 1, Access: False, OS: linux
-    Visible Ports: [(69, 'TCP'), (25, 'TCP')]
-    Edge Node: True, Pri Net Seg: 1
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 2, Access: False, OS: firewall
-    Visible Ports: [(22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 1
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 3, Access: False, OS: firewall
-    Visible Ports: [(443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 1
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 4, Access: False, OS: router
-    Visible Ports: [(22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
-[TheMalteseSailor] >
 ```
+
 </details>
 
 
