@@ -124,6 +124,8 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 
 ### Execute The Game
 ```
+python -V 
+python 3.10
 cd CyberWarGamePreview
 python CyberWarGame.py
 ```
