@@ -73,6 +73,7 @@ When you develop a capability, when making a selection from the decision table t
     - lpe ex. pop target 1 with <cape_sn>
       - Tools do not inherit the the exploits elevated permissions. 
       - You must develop a tool that can function at that permission level.
+    - lateral is not implemented....
 - __implant|install|upload__
 	- ex. implant target 1 with <cape_sn>
 - __develop|dev__
@@ -93,6 +94,17 @@ When you develop a capability, when making a selection from the decision table t
   - ex. remove <cape_sn> from target #
 - __attack__
   - [NOT IMPLEMENTED]
+
+#### Command Context / Teammate Tasking
+The goal of the game is to lead a hacking team. To lead you must be able to task team members. The game uses a per-task context that is initiated by prepending the teammate's name to the front of the command.
+
+- Teammate name is "__test1__".
+    - An example of tasking this teammate is "__test1 pop target 1 with 123456 from rdr__".
+    - The game supports teammate nicknaming. In the instance of a "test1" teammate name you can proivide a unique nickname.
+      - An example of this is "__1 pop target 1 with 123456 from rdr__", as long as "1" is unique.
+      - Providing "test" would fail if another teammate has "test" as a substring of their name.
+    - This will ultimately allow for the teammates with names like f4tS7aCk5 (FatStacks) to be addressed as either "fat", "stacks", etc.
+
     
 ### Game Mechanics
 __NOTE__: Whenever a decision table is presented, you are rolling a series of dice to determine your success or failure.
@@ -123,7 +135,8 @@ __NOTE__: Once you gain initial access to a target system, you will obtain addit
 
 
 ### Execute The Game
-python 3.10
+
+__NOTE__: python 3.10
 ```
 cd CyberWarGamePreview
 python CyberWarGame.py
@@ -176,90 +189,110 @@ ________/\\\\\\\\\________________/\\\_____________________________________
 =============== TEAM SELECTION ===============
 -----------------------------------------------------------------------------------
 Option Number: 1
-Name: test7
+Name: test5
     \__Skill Levels:
         \__Programming: 3
         \__Scripting: 4
-        \__Network Exploitation: 2
-        \__Exploit Development: 1
-        \__Personnality Bonus: 1
-    \___ Capabilities:
-         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                   \___  tool  | system_monitor | 230227  | None             | firewall | False  | user
------------------------------------------------------------------------------------
-Option Number: 2
-Name: test5
-    \__Skill Levels:
-        \__Programming: 1
-        \__Scripting: 4
-        \__Network Exploitation: 1
-        \__Exploit Development: 3
-        \__Personnality Bonus: 4
-    \___ Capabilities:
-         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
-                  \___ exploit | rce            | 004672  | (445, 'TCP')     | windows  | False  | system
-                  \___ exploit | lateral        | 718036  | None             | windows  | False  | system
------------------------------------------------------------------------------------
-Option Number: 3
-Name: test4
-    \__Skill Levels:
-        \__Programming: 4
-        \__Scripting: 3
         \__Network Exploitation: 1
         \__Exploit Development: 2
-        \__Personnality Bonus: 1
-    \___ Capabilities:
-         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                   \___  tool  | trojan         | 682283  | None             | router   | False  | kernel
-                   \___  tool  | virus          | 358203  | None             | router   | False  | limited service
------------------------------------------------------------------------------------
-Option Number: 4
-Name: test9
-    \__Skill Levels:
-        \__Programming: 4
-        \__Scripting: 4
-        \__Network Exploitation: 2
-        \__Exploit Development: 4
         \__Personnality Bonus: 3
     \___ Capabilities:
-         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
-                  \___ exploit | lpe            | 117380  | None             | linux    | True   | user
-                  \___ exploit | lateral        | 816752  | None             | router   | False  | limited service
------------------------------------------------------------------------------------
-Option Number: 5
-Name: test1
-    \__Skill Levels:
-        \__Programming: 2
-        \__Scripting: 3
-        \__Network Exploitation: 4
-        \__Exploit Development: 2
-        \__Personnality Bonus: 4
-    \___ Capabilities:
-         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
-                  \___ exploit | lpe            | 108022  | None             | router   | False  | system
-                  \___ exploit | rce            | 218866  | (443, 'TCP')     | linux    | False  | system
------------------------------------------------------------------------------------
-Option Number: 6
-Name: test8
-    \__Skill Levels:
-        \__Programming: 1
-        \__Scripting: 3
-        \__Network Exploitation: 3
-        \__Exploit Development: 4
-        \__Personnality Bonus: 4
-    \___ Capabilities:
-         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                   \___  tool  | keylogger      | 734468  | None             | router   | False  | limited service
+         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                   \___  tool  | triggerable    | 838227  | ('36057', 'TCP') | router   | False  | system
          \____________________________________________________________________________________________________
                                                                                                               \
          \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
-                  \___ exploit | lpe            | 707182  | None             | router   | False  | kernel
+                  \___ exploit | rce            | 122288  | (123, 'TCP')     | linux    | False  | user
+-----------------------------------------------------------------------------------
+Option Number: 2
+Name: test7
+    \__Skill Levels:
+        \__Programming: 1
+        \__Scripting: 2
+        \__Network Exploitation: 4
+        \__Exploit Development: 1
+        \__Personnality Bonus: 1
+    \___ Capabilities:
+         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                   \___  tool  | triggerable    | 775351  | ('54761', 'TCP') | linux    | False  | user
+         \____________________________________________________________________________________________________
+                                                                                                              \
+         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                  \___ exploit | lpe            | 608205  | None             | firewall | False  | system
+-----------------------------------------------------------------------------------
+Option Number: 3
+Name: test2
+    \__Skill Levels:
+        \__Programming: 3
+        \__Scripting: 2
+        \__Network Exploitation: 1
+        \__Exploit Development: 3
+        \__Personnality Bonus: 2
+    \___ Capabilities:
+         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                   \___  tool  | keylogger      | 378812  | None             | router   | True   | system
+         \____________________________________________________________________________________________________
+                                                                                                              \
+         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                  \___ exploit | lateral        | 534075  | None             | linux    | True   | user
+-----------------------------------------------------------------------------------
+Option Number: 4
+Name: test3
+    \__Skill Levels:
+        \__Programming: 2
+        \__Scripting: 3
+        \__Network Exploitation: 3
+        \__Exploit Development: 2
+        \__Personnality Bonus: 1
+    \___ Capabilities:
+         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                   \___  tool  | virus          | 456604  | None             | windows  | False  | kernel
+         \____________________________________________________________________________________________________
+                                                                                                              \
+         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                  \___ exploit | lateral        | 524218  | None             | linux    | False  | kernel
+-----------------------------------------------------------------------------------
+Option Number: 5
+Name: test8
+    \__Skill Levels:
+        \__Programming: 4
+        \__Scripting: 4
+        \__Network Exploitation: 4
+        \__Exploit Development: 2
+        \__Personnality Bonus: 3
+    \___ Capabilities:
+         \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                   \___  tool  | virus          | 122058  | None             | firewall | False  | limited service
+         \____________________________________________________________________________________________________
+                                                                                                              \
+         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                  \___ exploit | lateral        | 557288  | None             | windows  | False  | limited service
+-----------------------------------------------------------------------------------
+Option Number: 6
+Name: test9
+    \__Skill Levels:
+        \__Programming: 4
+        \__Scripting: 2
+        \__Network Exploitation: 3
+        \__Exploit Development: 2
+        \__Personnality Bonus: 1
+    \___ Capabilities:
+         \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                  \___ exploit | lpe            | 734386  | None             | firewall | True   | user
 ==============================================
 [?] Make your NPC selections by providing the NPC's 'Option Number'.
 [?] NPC1 selection? 1
 [?] NPC2 selection? 2
 [?] NPC3 selection? 3
-[ ] You've chosen to make you team with: test7, test5, and test4.
+
+    [{'type': 'tool', 'name': '838227', 'sub_type': 'triggerable', 'port': ('36057', 'TCP'), 'platform_type': 'router', 'burned': False, 'permissions': 'system'}]
+    [{'type': 'exploit', 'name': '122288', 'sub_type': 'rce', 'port': (123, 'TCP'), 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}]
+    [{'type': 'tool', 'name': '775351', 'sub_type': 'triggerable', 'port': ('54761', 'TCP'), 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}]
+    [{'type': 'exploit', 'name': '608205', 'sub_type': 'lpe', 'port': None, 'platform_type': 'firewall', 'burned': False, 'permissions': 'system'}]
+    [{'type': 'tool', 'name': '378812', 'sub_type': 'keylogger', 'port': None, 'platform_type': 'router', 'burned': True, 'permissions': 'system'}]
+    [{'type': 'exploit', 'name': '534075', 'sub_type': 'lateral', 'port': None, 'platform_type': 'linux', 'burned': True, 'permissions': 'user'}]
+
+[ ] You've chosen to make you team with: test5, test7, and test2.
 [?] What size network? [Small|Medium|Large|Huge]small
 
 [TheMalteseSailor] > show team
@@ -268,111 +301,56 @@ Name: test8
         \\\\\\\ TEAM DETAILS \\\\\\\
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- Team Details:
-        \___ Redirector Count: 0
+        \___ Redirector Count: 1
         \___ Team Members:
         -- Name: TheMalteseSailor
           \___ Burned Out: False
           \___ Task Timer: 0m0s
-          \___ P: 3, S: 1, NE: 1, ED: 3, PER: 3
+          \___ P: 2, S: 3, NE: 3, ED: 3, PER: 1
             \___ Targets:
             \___ Capabilities:
                  \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                           \___  tool  | trojan         | 524021  | None             | router   | False  | kernel
-                           \___  tool  | keylogger      | 351355  | None             | windows  | False  | user
-        -- Name: test7
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 3, S: 4, NE: 2, ED: 1, PER: 1
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                           \___  tool  | system_monitor | 230227  | None             | firewall | False  | user
+                           \___  tool  | beaconing      | 681288  | None             | router   | False  | system
         -- Name: test5
           \___ Burned Out: False
           \___ Task Timer: 0m0s
-          \___ P: 1, S: 4, NE: 1, ED: 3, PER: 4
-            \___ Targets:
-            \___ Capabilities:
-                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
-                          \___ exploit | rce            | 004672  | (445, 'TCP')     | windows  | False  | system
-                          \___ exploit | lateral        | 718036  | None             | windows  | False  | system
-        -- Name: test4
-          \___ Burned Out: False
-          \___ Task Timer: 0m0s
-          \___ P: 4, S: 3, NE: 1, ED: 2, PER: 1
+          \___ P: 3, S: 4, NE: 1, ED: 2, PER: 3
             \___ Targets:
             \___ Capabilities:
                  \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
-                           \___  tool  | trojan         | 682283  | None             | router   | False  | kernel
-                           \___  tool  | virus          | 358203  | None             | router   | False  | limited service
+                           \___  tool  | triggerable    | 838227  | ('36057', 'TCP') | router   | False  | system
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | rce            | 122288  | (123, 'TCP')     | linux    | False  | user
+        -- Name: test7
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 1, S: 2, NE: 4, ED: 1, PER: 1
+            \___ Targets:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | triggerable    | 775351  | ('54761', 'TCP') | linux    | False  | user
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | lpe            | 608205  | None             | firewall | False  | system
+        -- Name: test2
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 3, S: 2, NE: 1, ED: 3, PER: 2
+            \___ Targets:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | keylogger      | 378812  | None             | router   | True   | system
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | lateral        | 534075  | None             | linux    | True   | user
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         ///////      END     ///////
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-[TheMalteseSailor] > get rdr
-[DEBUG] cmd: ['rdr']
-
-[+] Option 1
- -- Definition:
-     \__ Use a wellknown VPS service with gift card.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 2+ of D20
- -- Bonus Chance: (0, 0)
- -- Failure state: ('failure_state', False)
-
-[+] Option 2
- -- Definition:
-     \__ Use a less known, but kinda sketchy VPS provider. Has chance for more than one redirector acquired.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 2
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 0+ of D0
- -- Bonus Chance: (10, 5)
- -- Failure state: ('failure_state', False)
-
-[+] Option 3
- -- Definition:
-     \__ Use tumbled bitcoin to purchase reputable normie VPS.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 2
-     \__ programming: 0
-     \__ scripting: 2
- -- Failure Cost: 2
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (15, 11)
- -- Failure state: ('failure_state', False)
-
-[+] Option 4
- -- Definition:
-     \__ Purchase verified anonymous VPS with Monero. Has chance to aquire more than one redirector.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 3
-     \__ programming: 0
-     \__ scripting: 2
- -- Failure Cost: 2
- -- Chance: Requires 10+ of D20
- -- Bonus Chance: (10, 9)
- -- Failure state: ('failure_state', False)
-[TheMalteseSailor] [cancel|#] choice? 1
-[DEBUG] decison: 1
-[Narrator] Dice roll Succeded.
-    \__ Needed: 2 on a D20
-    \__ Your Roll: 3
-
-[DEBUG] Calling background task worker thread from success status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
 [TheMalteseSailor] > scan target
 [DEBUG] cmd:
 
@@ -399,7 +377,80 @@ final_decision_struct['time cost']: 2
      \__ scripting: 1
  -- Failure Cost: 3
  -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 8)
+ -- Bonus Chance: (10, 10)
+ -- Failure state: ('failure_state', False)
+[TheMalteseSailor] [cancel|#] choice? 1
+[DEBUG] decison: 1
+[Narrator] Dice roll Succeded.
+    \__ Needed: 5 on a D20
+    \__ Your Roll: 13
+
+[DEBUG] Calling background task worker thread from success status.
+[DEBUG] Inside background task worker thread.
+final_decision_struct['time cost']: 2
+[ ] 1 second(s) remaining for TheMalteseSailor.
+[TheMalteseSailor] > show targets
+---------------------------------------------------------------------
+ Target: target 1, Access: False, OS: router
+    Visible Ports: [(443, 'TCP')]
+    Edge Node: True, Pri Net Seg: 2
+    Capes Deployed to target.
+       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
+---------------------------------------------------------------------
+[TheMalteseSailor] > dev router rce 443 tcp
+[DEBUG] cmd: ['router', 'rce', '443', 'tcp']
+[ ] invalid protocol provided.
+
+[+] Option 1
+ -- Definition:
+     \__ Lower skilled effort with longer time requirements | (User mode)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 5+ of D20
+ -- Bonus Chance: (0, 0)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 2
+ -- Definition:
+     \__ Intermediate skilled effort with shorter, but still longer time requirements | (Limited Service)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 6)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 3
+ -- Definition:
+     \__ Advanced skilled effort with acceptable time requirements. | (System)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 6)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 4
+ -- Definition:
+     \__ Expert skilled effort with short time requirements. | (Kernel)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 7)
  -- Failure state: ('failure_state', False)
 [TheMalteseSailor] [cancel|#] choice? 1
 [DEBUG] decison: 1
@@ -411,96 +462,13 @@ final_decision_struct['time cost']: 2
 [DEBUG] Inside background task worker thread.
 final_decision_struct['time cost']: 2
 [ ] 1 second(s) remaining for TheMalteseSailor.
-[TheMalteseSailor] > scan target
-[DEBUG] cmd:
-
-[+] Option 1
- -- Definition:
-     \__ Use aggressive nmap scan against all ports of the target's externally facing systems.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 5+ of D20
- -- Bonus Chance: (0, 0)
- -- Failure state: ('failure_state', False)
-
-[+] Option 2
- -- Definition:
-     \__ A slower, but still broad scan of the target's externally facing systems.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 2
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 3
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 2)
- -- Failure state: ('failure_state', False)
-[TheMalteseSailor] [cancel|#] choice? 1
-[DEBUG] decison: 1
-[Narrator] Failed dice roll for initial success.
-    \__ Needed: 5 on a D20
-    \__ Your Roll: 3
-[Narrator] No valid option or tasking commmand supplied.
-[DEBUG] Calling background task worker thread from failure status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
-[TheMalteseSailor] > scan target
-[DEBUG] cmd:
-
-... decision table snipped ...
-
-[DEBUG] Calling background task worker thread from success status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
-[TheMalteseSailor] > show targets
----------------------------------------------------------------------
- Target: target 1, Access: False, OS: linux
-    Visible Ports: [(22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 2, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (110, 'TCP'), (25, 'TCP'), (443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 3, Access: False, OS: router
-    Visible Ports: [(443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 4, Access: False, OS: linux
-    Visible Ports: [(21, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 5, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (25, 'TCP'), (22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 3
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
-[TheMalteseSailor] > dev linux rce 22 tcp
-[DEBUG] cmd: ['linux', 'rce', '22', 'tcp']
+[TheMalteseSailor] > dev router rce 443 tcp
+[DEBUG] cmd: ['router', 'rce', '443', 'tcp']
 [ ] invalid protocol provided.
 
 [+] Option 1
  -- Definition:
-     \__ Lower skilled effort with longer time requirements
+     \__ Lower skilled effort with longer time requirements | (User mode)
  -- Skill Requirements:
      \__ exploit development: 0
      \__ network exploitation: 1
@@ -513,7 +481,7 @@ final_decision_struct['time cost']: 2
 
 [+] Option 2
  -- Definition:
-     \__ Intermediate skilled effort with shorter, but still longer time requirements
+     \__ Intermediate skilled effort with shorter, but still longer time requirements | (Limited Service)
  -- Skill Requirements:
      \__ exploit development: 0
      \__ network exploitation: 1
@@ -521,12 +489,12 @@ final_decision_struct['time cost']: 2
      \__ scripting: 1
  -- Failure Cost: 2
  -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 19)
+ -- Bonus Chance: (10, 5)
  -- Failure state: ('failure_state', False)
 
 [+] Option 3
  -- Definition:
-     \__ Advanced skilled effort with acceptable time requirements.
+     \__ Advanced skilled effort with acceptable time requirements. | (System)
  -- Skill Requirements:
      \__ exploit development: 0
      \__ network exploitation: 1
@@ -534,121 +502,12 @@ final_decision_struct['time cost']: 2
      \__ scripting: 1
  -- Failure Cost: 2
  -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 12)
+ -- Bonus Chance: (10, 4)
  -- Failure state: ('failure_state', False)
 
 [+] Option 4
  -- Definition:
-     \__ Expert skilled effort with short time requirements.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 11)
- -- Failure state: ('failure_state', False)
-[TheMalteseSailor] [cancel|#] choice? 1
-[DEBUG] decison: 1
-[Narrator] Dice roll Succeded.
-    \__ Needed: 5 on a D20
-    \__ Your Roll: 9
-
-[DEBUG] Calling background task worker thread from success status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
-[DEBUG] added {'type': 'exploit', 'name': '466133', 'sub_type': 'rce', 'port': ('22', 'tcp'), 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}
-
-{'type': 'exploit', 'name': '466133', 'sub_type': 'rce', 'port': ('22', 'tcp'), 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}
-
-[TheMalteseSailor] > pop target 1 with 466133 from rdr
-[DEBUG] cmd: ['target', '1', 'with', '466133', 'from', 'rdr']
-[DEBUG] cape_sn in cape_sn_tracker.
-[DEBUG] cape_sn in cape_sn_tracker.
-[DEBUG] Target is visible and ports are visible.
-[DEBUG] targeted port is open.
-
-[+] Option 1
- -- Definition:
-     \__ Use aggressive nmap scan against all ports of the target's externally facing systems.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 5+ of D20
- -- Bonus Chance: (0, 0)
- -- Failure state: ('failure_state', False)
-[TheMalteseSailor] [cancel|#] choice? 1
-[DEBUG] decison: 1
-[Narrator] Dice roll Succeded.
-    \__ Needed: 5 on a D20
-    \__ Your Roll: 10
-
-[DEBUG] Calling background task worker thread from success status.
-[DEBUG] Inside background task worker thread.
-final_decision_struct['time cost']: 2
-[ ] 1 second(s) remaining for TheMalteseSailor.
-[TheMalteseSailor] > show targets
----------------------------------------------------------------------
- Target: target 1, Access: True, OS: linux
-    Visible Ports: [(22, 'TCP')]
-    System details: EDR:False, FW:False, Function:
-    Edge Node: True, Dual Homed: True, Pri Net Seg: 2, Alt Net Seg: 3
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
-       rce         | 466133  | False  | user        | True    | ['880555']  |
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 2, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (110, 'TCP'), (25, 'TCP'), (443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 3, Access: False, OS: router
-    Visible Ports: [(443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 4, Access: False, OS: linux
-    Visible Ports: [(21, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 5, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (25, 'TCP'), (22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 3
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
-[TheMalteseSailor] > dev linux rat
-[DEBUG] cmd: ['linux', 'rat']
-
-[+] Option 1
- -- Definition:
-     \__ Lower skilled effort with longer time requirements
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 5+ of D20
- -- Bonus Chance: (0, 0)
- -- Failure state: ('failure_state', False)
-
-[+] Option 2
- -- Definition:
-     \__ Intermediate skilled effort with shorter, but still longer time requirements
+     \__ Expert skilled effort with short time requirements. | (Kernel)
  -- Skill Requirements:
      \__ exploit development: 0
      \__ network exploitation: 1
@@ -658,51 +517,30 @@ final_decision_struct['time cost']: 2
  -- Chance: Requires 8+ of D20
  -- Bonus Chance: (10, 13)
  -- Failure state: ('failure_state', False)
-
-[+] Option 3
- -- Definition:
-     \__ Advanced skilled effort with acceptable time requirements.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 17)
- -- Failure state: ('failure_state', False)
-
-[+] Option 4
- -- Definition:
-     \__ Expert skilled effort with short time requirements.
- -- Skill Requirements:
-     \__ exploit development: 0
-     \__ network exploitation: 1
-     \__ programming: 0
-     \__ scripting: 1
- -- Failure Cost: 2
- -- Chance: Requires 8+ of D20
- -- Bonus Chance: (10, 17)
- -- Failure state: ('failure_state', False)
 [TheMalteseSailor] [cancel|#] choice? 1
 [DEBUG] decison: 1
 [Narrator] Dice roll Succeded.
     \__ Needed: 5 on a D20
-    \__ Your Roll: 9
+    \__ Your Roll: 14
 
 [DEBUG] Calling background task worker thread from success status.
 [DEBUG] Inside background task worker thread.
 final_decision_struct['time cost']: 2
 [ ] 1 second(s) remaining for TheMalteseSailor.
-[DEBUG] added {'type': 'tool', 'name': '072141', 'sub_type': 'rat', 'port': None, 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}
+[DEBUG] added {'type': 'exploit', 'name': '637805', 'sub_type': 'rce', 'port': ('443', 'tcp'), 'platform_type': 'router', 'burned': False, 'permissions': 'user'}
 
-{'type': 'tool', 'name': '072141', 'sub_type': 'rat', 'port': None, 'platform_type': 'linux', 'burned': False, 'permissions': 'user'}
+{'type': 'exploit', 'name': '637805', 'sub_type': 'rce', 'port': ('443', 'tcp'), 'platform_type': 'router', 'burned': False, 'permissions': 'user'}
 
-[TheMalteseSailor] > implant target 1 with 072141
+[TheMalteseSailor] > pop target 1 with 637805 from rdr
+[DEBUG] cmd: ['target', '1', 'with', '637805', 'from', 'rdr']
+[DEBUG] cape_sn in cape_sn_tracker.
+[DEBUG] cape_sn in cape_sn_tracker.
+[DEBUG] Target is visible and ports are visible.
+[DEBUG] targeted port is open.
 
 [+] Option 1
  -- Definition:
-     \__ Use aggressive nmap scan against all ports of the target's externally facing systems.
+     \__
  -- Skill Requirements:
      \__ exploit development: 0
      \__ network exploitation: 1
@@ -716,7 +554,7 @@ final_decision_struct['time cost']: 2
 [DEBUG] decison: 1
 [Narrator] Dice roll Succeded.
     \__ Needed: 5 on a D20
-    \__ Your Roll: 8
+    \__ Your Roll: 5
 
 [DEBUG] Calling background task worker thread from success status.
 [DEBUG] Inside background task worker thread.
@@ -724,43 +562,179 @@ final_decision_struct['time cost']: 2
 [ ] 1 second(s) remaining for TheMalteseSailor.
 [TheMalteseSailor] > show targets
 ---------------------------------------------------------------------
- Target: target 1, Access: True, OS: linux
-    Visible Ports: [(22, 'TCP')]
-    System details: EDR:False, FW:False, Function:
-    Edge Node: True, Dual Homed: True, Pri Net Seg: 2, Alt Net Seg: 3
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
-       rce         | 466133  | False  | user        | False   | ['880555']  |
-       rat         | 072141  | False  | user        | True    | ['880555']  |
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 2, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (110, 'TCP'), (25, 'TCP'), (443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 3, Access: False, OS: router
+ Target: target 1, Access: True, OS: router
     Visible Ports: [(443, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
+    System details: EDR:False, FW:False, Function:
+    Edge Node: True, Dual Homed: False, Pri Net Seg: 2, Alt Net Seg: 0
     Capes Deployed to target.
        TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
+       rce         | 637805  | False  | user        | True    | ['285033']  |
 ---------------------------------------------------------------------
+[TheMalteseSailor] > dev router rat
+[DEBUG] cmd: ['router', 'rat']
+
+[+] Option 1
+ -- Definition:
+     \__ Lower skilled effort with longer time requirements | (User mode)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 5+ of D20
+ -- Bonus Chance: (0, 0)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 2
+ -- Definition:
+     \__ Intermediate skilled effort with shorter, but still longer time requirements | (Limited Service)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 18)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 3
+ -- Definition:
+     \__ Advanced skilled effort with acceptable time requirements. | (System)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 15)
+ -- Failure state: ('failure_state', False)
+
+[+] Option 4
+ -- Definition:
+     \__ Expert skilled effort with short time requirements. | (Kernel)
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 8+ of D20
+ -- Bonus Chance: (10, 3)
+ -- Failure state: ('failure_state', False)
+[TheMalteseSailor] [cancel|#] choice? 1
+[DEBUG] decison: 1
+[Narrator] Dice roll Succeded.
+    \__ Needed: 5 on a D20
+    \__ Your Roll: 13
+
+[DEBUG] Calling background task worker thread from success status.
+[DEBUG] Inside background task worker thread.
+final_decision_struct['time cost']: 2
+[ ] 1 second(s) remaining for TheMalteseSailor.
+[DEBUG] added {'type': 'tool', 'name': '764772', 'sub_type': 'rat', 'port': None, 'platform_type': 'router', 'burned': False, 'permissions': 'user'}
+
+{'type': 'tool', 'name': '764772', 'sub_type': 'rat', 'port': None, 'platform_type': 'router', 'burned': False, 'permissions': 'user'}
+
+[TheMalteseSailor] > implant target 1 with 764772
+
+[+] Option 1
+ -- Definition:
+     \__
+ -- Skill Requirements:
+     \__ exploit development: 0
+     \__ network exploitation: 1
+     \__ programming: 0
+     \__ scripting: 1
+ -- Failure Cost: 2
+ -- Chance: Requires 5+ of D20
+ -- Bonus Chance: (0, 0)
+ -- Failure state: ('failure_state', False)
+[TheMalteseSailor] [cancel|#] choice? 1
+[DEBUG] decison: 1
+[Narrator] Dice roll Succeded.
+    \__ Needed: 5 on a D20
+    \__ Your Roll: 9
+
+[DEBUG] Calling background task worker thread from success status.
+[DEBUG] Inside background task worker thread.
+final_decision_struct['time cost']: 2
+[ ] 1 second(s) remaining for TheMalteseSailor.
+[TheMalteseSailor] > show targets
 ---------------------------------------------------------------------
- Target: target 4, Access: False, OS: linux
-    Visible Ports: [(21, 'TCP')]
-    Edge Node: True, Pri Net Seg: 2
+ Target: target 1, Access: True, OS: router
+    Visible Ports: [(443, 'TCP')]
+    System details: EDR:False, FW:False, Function:
+    Edge Node: True, Dual Homed: False, Pri Net Seg: 2, Alt Net Seg: 0
     Capes Deployed to target.
        TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
+       rce         | 637805  | False  | user        | False   | ['285033']  |
+       rat         | 764772  | False  | user        | True    | ['285033']  |
 ---------------------------------------------------------------------
----------------------------------------------------------------------
- Target: target 5, Access: False, OS: linux
-    Visible Ports: [(123, 'TCP'), (25, 'TCP'), (22, 'TCP')]
-    Edge Node: True, Pri Net Seg: 3
-    Capes Deployed to target.
-       TYPE        | CAPE_SN | BURNED | PERMISSIONS | PRESENT | INSTANCE_ID | SRC_INSTANCE_ID
----------------------------------------------------------------------
+[TheMalteseSailor] > show team
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        \\\\\\\ TEAM DETAILS \\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-- Team Details:
+        \___ Redirector Count: 1
+        \___ Team Members:
+        -- Name: TheMalteseSailor
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 2, S: 3, NE: 3, ED: 3, PER: 1
+            \___ Targets:
+              \___ src: rdr, target: target 1, meth: rat(764772)(user), instance_id: 285033, src_instance_id:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | beaconing      | 681288  | None             | router   | False  | system
+                           \___  tool  | rat            | 764772  | None             | router   | False  | user
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | rce            | 637805  | ('443', 'tcp')   | router   | False  | user
+        -- Name: test5
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 3, S: 4, NE: 1, ED: 2, PER: 3
+            \___ Targets:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | triggerable    | 838227  | ('36057', 'TCP') | router   | False  | system
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | rce            | 122288  | (123, 'TCP')     | linux    | False  | user
+        -- Name: test7
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 1, S: 2, NE: 4, ED: 1, PER: 1
+            \___ Targets:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | triggerable    | 775351  | ('54761', 'TCP') | linux    | False  | user
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | lpe            | 608205  | None             | firewall | False  | system
+        -- Name: test2
+          \___ Burned Out: False
+          \___ Task Timer: 0m0s
+          \___ P: 3, S: 2, NE: 1, ED: 3, PER: 2
+            \___ Targets:
+            \___ Capabilities:
+                 \___ Tools:     TYPE  | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSINOS
+                           \___  tool  | keylogger      | 378812  | None             | router   | True   | system
+                 \____________________________________________________________________________________________________
+                                                                                                                      \
+                 \___ Exploits: TYPE   | SUBTYPE        | CAPE_SN | PORT             | PLATFORM | BURNED | PERMISSIONS
+                          \___ exploit | lateral        | 534075  | None             | linux    | True   | user
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        ///////      END     ///////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 [TheMalteseSailor] >
 ```
 </pre>
