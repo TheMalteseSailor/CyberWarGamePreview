@@ -1,6 +1,6 @@
 # Cyber War: Choose your contract and become an unstoppable hacking force.
 
-$${\color{red}DEVELOPER \space BUILD}$$
+$${\color{red}Pre-Alpha}$$
 
 ### License
 GNU GPL. You can use for free, but please don't steal or make money from without contacting me first.
